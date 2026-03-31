@@ -16,7 +16,6 @@
     --grad-brand:  linear-gradient(135deg, #0064DC 0%, #00FFD2 100%);
     --grad-hot:    linear-gradient(135deg, #AA0084 0%, #FB0087 100%);
     --grad-full:   linear-gradient(135deg, #0064DC 0%, #00C8B4 45%, #00FFD2 100%);
-    --grad-header: linear-gradient(135deg, #0064DC 0%, #00B8A9 50%, #00FFD2 100%);
     --bg:      #F0F5FB;
     --surface: #FFFFFF;
     --border:  #E2EAF4;
@@ -26,33 +25,38 @@
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family:'Baloo 2',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
 
-  /* HEADER */
-  .header { background:var(--grad-header); position:relative; overflow:hidden; }
-  .header::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(255,255,255,0.07); }
-  .header::after  { content:''; position:absolute; bottom:-60px; left:22%; width:200px; height:200px; border-radius:50%; background:rgba(0,0,0,0.06); }
-  .header-inner { display:flex; align-items:center; justify-content:space-between; padding:28px 48px 24px; position:relative; z-index:1; }
-  .logo-wrap { display:flex; align-items:center; gap:16px; }
-  .logo-svg  { width:60px; height:auto; flex-shrink:0; }
-  .logo-text .brand-name { font-size:34px; font-weight:800; color:#fff; letter-spacing:1px; line-height:1; display:block; }
-  .logo-text .brand-sub  { font-size:11px; font-weight:600; color:rgba(255,255,255,0.8); letter-spacing:0.07em; text-transform:uppercase; display:block; margin-top:2px; }
-  .header-right { display:flex; flex-direction:column; align-items:flex-end; gap:10px; }
-  .eu-pill { display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.18); border:1px solid rgba(255,255,255,0.35); border-radius:24px; padding:5px 14px; font-size:11px; font-weight:700; color:#fff; letter-spacing:0.07em; text-transform:uppercase; }
-  .meta-row { display:flex; gap:10px; }
-  .meta-chip { background:rgba(0,0,0,0.18); border-radius:8px; padding:4px 12px; font-size:12px; color:rgba(255,255,255,0.85); font-weight:500; }
-  .meta-chip strong { color:#fff; }
-  .header-accent { height:4px; background:var(--grad-hot); }
-
   /* TABS */
-  .nav-strip { background:var(--dark); display:flex; gap:0; padding:0 48px; overflow-x:auto; border-bottom:3px solid rgba(0,100,220,0.3); }
+  .nav-strip { background:var(--dark); display:flex; gap:0; padding:0 32px; overflow-x:auto; border-bottom:3px solid rgba(0,100,220,0.3); }
   .tab { padding:13px 20px; font-family:'Baloo 2',sans-serif; font-size:13px; font-weight:600; color:rgba(255,255,255,0.5); cursor:pointer; border-bottom:3px solid transparent; white-space:nowrap; transition:all 0.2s; user-select:none; margin-bottom:-3px; }
   .tab:hover { color:var(--cyan); }
   .tab.active { color:var(--cyan); border-bottom-color:var(--cyan); }
 
   /* LAYOUT */
-  .container { padding:32px 48px; max-width:1400px; margin:0 auto; }
+  .container { padding:28px 32px; max-width:1400px; margin:0 auto; }
   .panel { display:none; }
   .panel.active { display:block; animation:fadeIn 0.3s ease; }
   @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+  /* OVERVIEW TITLE BLOCK */
+  .overview-header {
+    background: var(--dark);
+    border-radius: 16px;
+    padding: 22px 28px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .overview-header-left { display:flex; align-items:center; gap:18px; }
+  .oh-logo { height:52px; width:auto; flex-shrink:0; }
+  .oh-report { font-size:11px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:var(--cyan); margin-bottom:3px; }
+  .oh-main { font-size:20px; font-weight:800; color:#fff; line-height:1.15; }
+  .oh-sub  { font-size:12px; color:rgba(255,255,255,0.55); margin-top:3px; font-weight:500; }
+  .oh-meta { display:flex; gap:10px; flex-wrap:wrap; }
+  .oh-chip { background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.18); border-radius:8px; padding:5px 12px; font-size:11px; color:rgba(255,255,255,0.75); font-weight:600; white-space:nowrap; }
+  .oh-chip strong { color:#fff; }
 
   .section-eyebrow { font-size:11px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--blue); margin-bottom:2px; }
   .section-title { font-size:22px; font-weight:800; color:var(--dark); margin-bottom:24px; }
@@ -80,10 +84,25 @@
   .bar-row { display:flex; align-items:center; gap:12px; margin-bottom:11px; }
   .bar-row:last-child { margin-bottom:0; }
   .bar-label { width:160px; flex-shrink:0; font-size:12px; font-weight:500; color:var(--dark); }
-  .bar-label.wide { width:210px; }
-  .bar-track { flex:1; height:11px; background:#EBF1FB; border-radius:6px; position:relative; overflow:hidden; }
+  .bar-label.wide { width:220px; }
+  .bar-track { flex:1; height:11px; background:#D8E4F5; border-radius:6px; position:relative; overflow:visible; }
   .bar-fill { height:100%; border-radius:6px; transition:width 1s cubic-bezier(.4,0,.2,1); }
-  .bar-target-line { position:absolute; top:-3px; bottom:-3px; width:2px; background:rgba(60,60,59,0.22); }
+  .bar-target-line {
+    position:absolute; top:-5px; bottom:-5px; width:3px;
+    background: var(--dark);
+    border-radius: 2px;
+    z-index: 2;
+  }
+  .bar-target-line::before {
+    content:'';
+    position:absolute;
+    top:-6px; left:50%;
+    transform:translateX(-50%);
+    width:0; height:0;
+    border-left:5px solid transparent;
+    border-right:5px solid transparent;
+    border-top:6px solid var(--dark);
+  }
   .bar-vals { width:58px; flex-shrink:0; text-align:right; }
   .bar-actual { font-size:13px; font-weight:800; }
   .bar-tval   { font-size:11px; color:var(--muted); }
@@ -93,15 +112,17 @@
 
   /* OUTCOME TABLE */
   .out-table { width:100%; border-collapse:collapse; }
-  .out-table th { background:#F4F8FF; font-size:11px; text-transform:uppercase; letter-spacing:0.1em; padding:9px 14px; text-align:left; color:var(--muted); font-weight:700; border-bottom:1px solid var(--border); }
+  .out-table th { background:#E8EFFC; font-size:11px; text-transform:uppercase; letter-spacing:0.1em; padding:9px 14px; text-align:left; color:var(--dark); font-weight:700; border-bottom:2px solid #C5D4EE; }
   .out-table td { padding:11px 14px; font-size:12.5px; border-bottom:1px solid var(--border); vertical-align:middle; }
+  .out-table tbody tr:nth-child(even) td { background:#EEF4FF; }
+  .out-table tbody tr:nth-child(odd) td  { background:#FFFFFF; }
   .out-table tr:last-child td { border-bottom:none; }
-  .out-table tr:hover td { background:#FAFCFF; }
+  .out-table tr:hover td { background:#DDEAFF !important; }
   .tag-score { display:inline-flex; align-items:center; gap:5px; padding:3px 11px; border-radius:20px; font-size:12px; font-weight:700; }
   .tag-green { background:#E0FBF4; color:#007A5E; }
   .tag-amber { background:#FFF8E0; color:#9A6A00; }
 
-  .big-stat { font-size:52px; font-weight:800; line-height:1; }
+  .big-stat { font-size:48px; font-weight:800; line-height:1; }
   .big-stat-label { font-size:13px; color:var(--muted); margin-top:4px; }
 
   /* GRADIENT CARDS */
@@ -127,110 +148,125 @@
   .tc-lbl { font-size:12px; color:var(--muted); margin-top:6px; font-weight:500; }
   .tc-sub { font-size:11px; margin-top:10px; }
 
+  /* ── FOOTNOTE / ASTERISK SYSTEM ── */
+  .footnote-box {
+    margin-top: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .footnote-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 11.5px;
+    color: #3c3c3b;
+    line-height: 1.5;
+    padding: 9px 12px;
+    background: rgba(194, 214, 186, 0.6);
+    border-left: 3px solid #88c3a8;
+    border-radius: 0 8px 8px 0;
+  }
+  .fn-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px; height: 18px;
+    border-radius: 50%;
+    background: #88c3a8;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .footnote-item strong { color: #3c3c3b; }
+
+  /* inline note inside kpi-card */
+  .kpi-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 10px;
+    padding: 8px 10px;
+    background: rgba(194, 214, 186, 0.6);
+    border-left: 3px solid #88c3a8;
+    border-radius: 0 8px 8px 0;
+    font-size: 11px;
+    color: #3c3c3b;
+    line-height: 1.45;
+  }
+  .kpi-note .fn-badge { min-width:16px; height:16px; font-size:9px; }
+
+  /* asterisk marker inline */
+  .ast-marker { color: #88c3a8; font-weight: 800; font-size: 13px; vertical-align: super; line-height: 0; }
+
   @media(max-width:960px) {
     .kpi-grid { grid-template-columns:repeat(2,1fr); }
     .two-col,.ttt-grid,.three-col { grid-template-columns:1fr; }
-    .container { padding:20px; }
-    .header-inner { flex-direction:column; align-items:flex-start; gap:16px; padding:24px 20px; }
-    .nav-strip { padding:0 20px; }
+    .container { padding:16px; }
+    .nav-strip { padding:0 16px; }
+    .overview-header { flex-direction:column; align-items:flex-start; }
   }
   @media(max-width:560px) { .kpi-grid { grid-template-columns:1fr; } }
-/* FOOTER */
-.footer {
-  background: var(--dark);
-  border-top: 4px solid;
-  border-image: var(--grad-hot) 1;
-  padding: 24px 48px;
-  display: flex;
-  align-items: center;
-  gap: 28px;
-}
-.footer img {
-  height: 60px;
-  flex-shrink: 0;
-}
-.footer-text {
-  font-family: 'Baloo 2', sans-serif;
-  font-size: 12px;
-  color: rgba(255,255,255,0.65);
-  line-height: 1.6;
-}
-
 </style>
 </head>
 <body>
-
-<div class="header">
-  <div class="header-inner">
-    <div class="logo-wrap">
-      <img src="Pictogram.png" class="logo-svg" alt="H-PASS logo">
-        <defs>
-          <linearGradient id="g1" x1="0" y1="0" x2="54" y2="54" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#0064DC"/>
-            <stop offset="100%" stop-color="#00FFD2"/>
-          </linearGradient>
-        </defs>
-        <circle cx="16" cy="8" r="5.5" fill="url(#g1)" opacity="0.9"/>
-        <circle cx="32" cy="6" r="5.5" fill="#FB0087"/>
-        <path d="M4 27 L16 15 L28 27 L16 39Z" fill="url(#g1)" opacity="0.9"/>
-        <path d="M19 25 L31 13 L43 25 L31 37Z" fill="#FB0087" opacity="0.88"/>
-      </svg>
-      <div class="logo-text">
-        <span class="brand-name">H-PASS</span>
-        <span class="brand-sub">Health Professionals' &amp; Digital Team Skills Advancement</span>
-      </div>
-    </div>
-    <div class="header-right">
-      <div class="eu-pill">🇪🇺 &nbsp;EU4H-2022-PJ-06 · GA 101101139</div>
-      <div class="meta-row">
-        <div class="meta-chip"><strong>D1.2 Training Monitoring Report</strong> </div>
-        <div class="meta-chip">Jan <strong>2026</strong></div>
-        <div class="meta-chip"><strong>6</strong> Partner Countries</div>
-        <div class="meta-chip">May 2023 – Apr <strong>2026</strong></div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="header-accent"></div>
 
 <div class="nav-strip">
   <div class="tab active" data-tab="overview">📊 Overview</div>
   <div class="tab" data-tab="countries">🌍 Countries</div>
   <div class="tab" data-tab="professions">👩‍⚕️ Professions</div>
   <div class="tab" data-tab="outcomes">📈 Outcomes</div>
-  <div class="tab" data-tab="satisfaction">⭐ Satisfaction</div>
+  <div class="tab" data-tab="satisfaction">⭐ Satisfaction & Impact</div>
   <div class="tab" data-tab="ttt">🎓 Train-the-Trainer</div>
 </div>
 
-<!-- OVERVIEW -->
 <div id="panel-overview" class="panel active">
 <div class="container">
-  <div class="section-eyebrow">Executive Summary</div>
-  <div class="section-title">Key Output Indicators at a Glance</div>
+  <div class="overview-header">
+    <div class="overview-header-left">
+      <img src="Pictogram.png" class="oh-logo" alt="H-PASS">
+      <div>
+        <div class="oh-report">D1.2 Training Monitoring Report</div>
+        <div class="oh-main">Executive Summary — Key Indicators at a Glance</div>
+        <div class="oh-sub">Health Professionals' &amp; Digital Team Skills Advancement</div>
+      </div>
+    </div>
+    <div class="oh-meta">
+      <div class="oh-chip">🇪🇺 EU4H-2022-PJ-06</div>
+      <div class="oh-chip">GA <strong>101101139</strong></div>
+      <div class="oh-chip"><strong>6</strong> Partner Countries</div>
+      <div class="oh-chip">Jan <strong>2026</strong></div>
+    </div>
+  </div>
+
   <div class="kpi-grid">
     <div class="kpi-card">
       <div class="top-bar" style="background:var(--grad-brand)"></div>
       <div class="kpi-icon">🎓</div>
       <div class="kpi-label">Health Professionals Trained</div>
-      <div class="kpi-value" style="background:var(--grad-brand);-webkit-background-clip:text;-webkit-text-fill-color:transparent">537</div>
-      <div class="kpi-target">Target: <strong>450</strong></div>
-      <span class="kpi-pill pill-over">+19.3% above target ✓</span>
+      <div class="kpi-value" style="background:var(--grad-brand);-webkit-background-clip:text;-webkit-text-fill-color:transparent">814</div>
+      <div class="kpi-target">Target: <strong>450</strong> · incl. TtT &amp; pilots</div>
+      <span class="kpi-pill pill-over">+80.9% above target ✓</span>
     </div>
     <div class="kpi-card">
       <div class="top-bar" style="background:var(--grad-hot)"></div>
-      <div class="kpi-icon">🏅</div>
-      <div class="kpi-label">CME Credits Awarded</div>
-      <div class="kpi-value" style="background:var(--grad-hot);-webkit-background-clip:text;-webkit-text-fill-color:transparent">497</div>
-      <div class="kpi-target">Target: <strong>400</strong> · 100% CME</div>
-      <span class="kpi-pill pill-over">+24.3% above target ✓</span>
+      <div class="kpi-icon">👩‍⚕️</div>
+      <div class="kpi-label">Training Participants</div>
+      <div class="kpi-value" style="background:var(--grad-hot);-webkit-background-clip:text;-webkit-text-fill-color:transparent">603</div>
+      <div class="kpi-target">Target: <strong>350</strong> · H-PASS excl. TtT</div>
+      <span class="kpi-pill pill-over">+72.3% above target ✓</span>
     </div>
     <div class="kpi-card">
       <div class="top-bar" style="background:linear-gradient(90deg,#AA0084,#0064DC)"></div>
       <div class="kpi-icon">🔁</div>
-      <div class="kpi-label">TtT Completions</div>
-      <div class="kpi-value" style="color:var(--purple)">54</div>
-      <div class="kpi-target">Target: <strong>59</strong></div>
-      <span class="kpi-pill pill-under">91.5% of target</span>
+      <div class="kpi-label">TtT Sessions Completed</div>
+      <div class="kpi-value" style="color:var(--purple)">211</div>
+      <div class="kpi-target">Target: <strong>100</strong></div>
+      <span class="kpi-pill pill-over">+111% above target ✓</span>
     </div>
     <div class="kpi-card">
       <div class="top-bar" style="background:linear-gradient(90deg,#00FFD2,#0064DC)"></div>
@@ -241,32 +277,51 @@
       <span class="kpi-pill pill-over">56.4% gave top score ✓</span>
     </div>
   </div>
+
   <div class="badge-strip">
     <div class="badge"><span class="b-icon">🌍</span><span class="b-lbl">Countries</span><span class="b-val">6</span></div>
     <div class="badge"><span class="b-icon">📅</span><span class="b-lbl">Duration</span><span class="b-val">36 mo</span></div>
     <div class="badge"><span class="b-icon">🏥</span><span class="b-lbl">Professions</span><span class="b-val">5</span></div>
     <div class="badge"><span class="b-icon">📚</span><span class="b-lbl">Thematic Modules</span><span class="b-val">12</span></div>
-    <div class="badge"><span class="b-icon">📋</span><span class="b-lbl">Pre+Post Surveys</span><span class="b-val">449</span></div>
-    <div class="badge"><span class="b-icon">✅</span><span class="b-lbl">Credential type</span><span class="b-val">100% CME</span></div>
+    <div class="badge"><span class="b-icon">👩‍⚕️</span><span class="b-lbl">H-PASS (excl. TtT)</span><span class="b-val">603</span></div>
+    <div class="badge"><span class="b-icon">✅</span><span class="b-lbl">CME Credential Attainment Rate</span><span class="b-val">90%</span></div>
+    <div class="badge"><span class="b-icon">♀</span><span class="b-lbl">Female participants</span><span class="b-val">82.6%</span></div>
   </div>
+
   <div class="two-col">
     <div class="card">
       <div class="card-title"><div class="cdot" style="background:var(--blue)"></div>Output Indicators — Actual vs. Target</div>
       <div class="legend">
         <div class="legend-item"><div class="ldot" style="background:var(--blue)"></div>Actual</div>
-        <div class="legend-item"><div class="ldot" style="background:#D0DCF0;border:1px dashed #9D9D9C"></div>Target line</div>
+        <div class="legend-item"><div class="ldot" style="background:var(--dark)"></div>Target</div>
       </div>
       <div id="output-bars"></div>
     </div>
     <div class="card">
       <div class="card-title"><div class="cdot" style="background:var(--magenta)"></div>Outcome Indicators — Achievement Rate (%)</div>
       <div id="outcome-bars"></div>
+      <div class="footnote-box">
+        <div class="footnote-item">
+          <span class="fn-badge">*</span>
+          <span><strong>Skills utilised in practice:</strong> At least 50% of participants report change in teamwork patterns, better organised workflows or improved task-shifting after the training.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="cdot" style="background:var(--cyan)"></div>Key Achievements</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0">
+      <div style="font-size:13px;padding:10px 12px;border-bottom:1px solid var(--border);display:flex;gap:10px;align-items:center"><span>🎓</span>All 5 health professions represented in training</div>
+      <div style="font-size:13px;padding:10px 12px;border-bottom:1px solid var(--border);display:flex;gap:10px;align-items:center"><span>🌍</span>5 of 6 countries exceeded national targets</div>
+      <div style="font-size:13px;padding:10px 12px;border-bottom:1px solid var(--border);display:flex;gap:10px;align-items:center"><span>⭐</span>92.9% H-PASS &amp; 88.2% DCA satisfaction</div>
+      <div style="font-size:13px;padding:10px 12px;display:flex;gap:10px;align-items:center"><span>🚀</span>58.7% of DCA completers took concrete workplace actions</div>
+      <div style="font-size:13px;padding:10px 12px;display:flex;gap:10px;align-items:center"><span>📈</span>All outcome targets exceeded across both H-PASS and DCA programmes</div>
     </div>
   </div>
 </div>
 </div>
 
-<!-- COUNTRIES -->
 <div id="panel-countries" class="panel">
 <div class="container">
   <div class="section-eyebrow">Geographic Breakdown</div>
@@ -278,12 +333,17 @@
       <div class="legend-item"><div class="ldot" style="background:var(--magenta)"></div>Below target</div>
     </div>
     <div id="country-bars"></div>
+    <div class="footnote-box">
+      <div class="footnote-item">
+        <span class="fn-badge">*</span>
+        <span><strong>Cyprus (48 vs. 75 target):</strong> The national target could not be fully met due to the demographic characteristics of the piloting country.</span>
+      </div>
+    </div>
   </div>
   <div class="three-col" id="country-cards"></div>
 </div>
 </div>
 
-<!-- PROFESSIONS -->
 <div id="panel-professions" class="panel">
 <div class="container">
   <div class="section-eyebrow">Professional Breakdown</div>
@@ -292,19 +352,34 @@
     <div class="card">
       <div class="card-title"><div class="cdot" style="background:var(--purple)"></div>Training Completion by Profession</div>
       <div id="profession-bars"></div>
+      <div class="footnote-box">
+        <div class="footnote-item">
+          <span class="fn-badge">*</span>
+          <span><strong>Medical Doctors (111 vs. 135 target):</strong> The target could not be fulfilled due to the target-group-reach of the piloting partners, as well as the work characteristics and training preferences of the target group.</span>
+        </div>
+      </div>
     </div>
     <div class="card">
-      <div class="card-title"><div class="cdot" style="background:var(--cyan)"></div>Proportion of Total Trained (n=537)</div>
+      <div class="card-title"><div class="cdot" style="background:var(--cyan)"></div>Proportion of Total Trained (n=603, H-PASS excl. TtT)</div>
       <div style="display:flex;align-items:center;justify-content:center;padding:16px 0;gap:28px;flex-wrap:wrap">
         <canvas id="donutCanvas" width="210" height="210"></canvas>
         <div id="donut-legend"></div>
       </div>
     </div>
   </div>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title"><div class="cdot" style="background:var(--blue)"></div>Participants by Age Group (n=603)</div>
+      <div id="age-bars"></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="cdot" style="background:var(--magenta)"></div>Participants by Gender (n=603)</div>
+      <div id="gender-bars"></div>
+    </div>
+  </div>
 </div>
 </div>
 
-<!-- OUTCOMES -->
 <div id="panel-outcomes" class="panel">
 <div class="container">
   <div class="section-eyebrow">Learning Impact</div>
@@ -316,6 +391,12 @@
         <thead><tr><th>Indicator</th><th>Target</th><th>Result</th><th>Status</th></tr></thead>
         <tbody id="training-tbody"></tbody>
       </table>
+      <div class="footnote-box">
+        <div class="footnote-item">
+          <span class="fn-badge">*</span>
+          <span><strong>Skills utilised in practice (80.68%):</strong> At least 50% of participants report change in teamwork patterns, better organised workflows and workload among health professionals, or improved task-shifting after the training.</span>
+        </div>
+      </div>
     </div>
     <div class="card">
       <div class="card-title"><div class="cdot" style="background:var(--magenta)"></div>Train-the-Trainer (DCA) Outcomes</div>
@@ -323,37 +404,34 @@
         <thead><tr><th>Indicator</th><th>Target</th><th>Result</th><th>Status</th></tr></thead>
         <tbody id="ttt-tbody"></tbody>
       </table>
+      <div class="footnote-box">
+        <div class="footnote-item">
+          <span class="fn-badge">*</span>
+          <span><strong>Leadership in digital settings (92.06%):</strong> Measures improved capabilities for leadership in digital settings among TtT course participants, based on post-training survey.</span>
+        </div>
+      </div>
     </div>
   </div>
   <div class="card">
-    <div class="card-title"><div class="cdot" style="background:var(--blue)"></div>Self-Assessment Change — Pre → Post (n=449)</div>
-    <div class="three-col" style="margin-bottom:0">
-      <div style="text-align:center;padding:16px 0">
-        <div class="big-stat" style="background:var(--grad-brand);-webkit-background-clip:text;-webkit-text-fill-color:transparent">+8%</div>
-        <div class="big-stat-label">Overall Self-Evaluation</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:4px">71.1% improved or maintained</div>
+    <div class="card-title"><div class="cdot" style="background:var(--blue)"></div>Breakdown by Thematic Components</div>
+    <div class="two-col" style="margin-bottom:0">
+      <div>
+        <div id="thematic-bars-left"></div>
       </div>
-      <div style="text-align:center;padding:16px 0">
-        <div class="big-stat" style="background:var(--grad-hot);-webkit-background-clip:text;-webkit-text-fill-color:transparent">+10.5%</div>
-        <div class="big-stat-label">Skills Self-Assessment</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:4px">72.8% improved or maintained</div>
-      </div>
-      <div style="text-align:center;padding:16px 0">
-        <div class="big-stat" style="color:var(--blue)">+6.7%</div>
-        <div class="big-stat-label">Attitude Self-Assessment</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:4px">69.2% improved or maintained</div>
+      <div>
+        <div id="thematic-bars-right"></div>
       </div>
     </div>
   </div>
 </div>
 </div>
 
-<!-- SATISFACTION -->
 <div id="panel-satisfaction" class="panel">
 <div class="container">
   <div class="section-eyebrow">Participant Feedback</div>
-  <div class="section-title">Overall Satisfaction & Evaluation</div>
-  <div class="three-col">
+  <div class="section-title">Satisfaction & Training Impact</div>
+  <div class="section-eyebrow" style="margin-bottom:10px;margin-top:0">H-PASS Training</div>
+  <div class="two-col" style="margin-bottom:8px">
     <div class="grad-card" style="background:var(--grad-brand)">
       <div class="gc-label">Rated 4 or 5 out of 5</div>
       <div class="gc-val">92.9%</div>
@@ -364,29 +442,71 @@
       <div class="gc-val">56.4%</div>
       <div class="gc-sub">n = 468 participants</div>
     </div>
+  </div>
+  <div class="section-eyebrow" style="margin-bottom:10px">DCA / TtT Training</div>
+  <div class="two-col" style="margin-bottom:16px">
     <div class="grad-card" style="background:linear-gradient(135deg,#0064DC,#AA0084)">
-      <div class="gc-label">Increased clinical digital tool use</div>
-      <div class="gc-val">82.9%</div>
-      <div class="gc-sub">n = 466 participants</div>
+      <div class="gc-label">Rated 4 or 5 out of 5</div>
+      <div class="gc-val">88.2%</div>
+      <div class="gc-sub">DCA participants</div>
+    </div>
+    <div class="grad-card" style="background:linear-gradient(135deg,#AA0084,#FB0087)">
+      <div class="gc-label">Gave top score (5/5)</div>
+      <div class="gc-val">56.7%</div>
+      <div class="gc-sub">DCA participants</div>
     </div>
   </div>
-  <div class="card" style="margin-top:0">
-    <div class="card-title"><div class="cdot" style="background:var(--blue)"></div>Digital Tool Usage Impact</div>
+  <div class="card">
+    <div class="card-title"><div class="cdot" style="background:var(--blue)"></div>Digital Tool Usage Impact (H-PASS)</div>
     <div id="usage-bars"></div>
+  </div>
+  <div class="card">
+    <div class="card-title"><div class="cdot" style="background:var(--magenta)"></div>Key Impact Indicators</div>
+    <div id="impact-bars"></div>
+    <div class="footnote-box">
+      <div class="footnote-item">
+        <span class="fn-badge">*</span>
+        <span><strong>Improved teamwork &amp; workflows (80.7%):</strong> Proportion of H-PASS participants reporting change in teamwork patterns, better organised workflows and workload among health professionals, or improved task-shifting after the training.</span>
+      </div>
+      <div class="footnote-item">
+        <span class="fn-badge">**</span>
+        <span><strong>DCA workplace actions (58.7%):</strong> Proportion of DCA completers who took specific actions in their professional or work environment to enable digital innovation or to improve teamwork and collaboration.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="cdot" style="background:var(--blue)"></div>Self-Assessment Change — Pre → Post (H-PASS participants)</div>
+    <div class="three-col" style="margin-bottom:0">
+      <div style="text-align:center;padding:16px 0">
+        <div class="big-stat" style="background:var(--grad-brand);-webkit-background-clip:text;-webkit-text-fill-color:transparent">+8.16%</div>
+        <div class="big-stat-label">Avg. increase in skills &amp; attitudes</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:4px">All H-PASS participants (pre-post)</div>
+      </div>
+      <div style="text-align:center;padding:16px 0; border-left:1px solid var(--border); border-right:1px solid var(--border);">
+        <div class="big-stat" style="color:var(--magenta)">15.8%</div>
+        <div class="big-stat-label" style="padding:0 10px;">Avg increase - positive changes only</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:4px"></div>
+      </div>
+      <div style="text-align:center;padding:16px 0">
+        <div class="big-stat" style="color:var(--blue)">80.7%</div>
+        <div class="big-stat-label">Skills utilised in practice</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:4px">Post-training survey (outcome indicator)</div>
+      </div>
+    </div>
   </div>
 </div>
 </div>
 
-<!-- TtT -->
 <div id="panel-ttt" class="panel">
 <div class="container">
   <div class="section-eyebrow">Train-the-Trainer Programme</div>
   <div class="section-title">Digital Change Agents (DCA) Programme Results</div>
   <div class="ttt-grid">
     <div class="ttt-card">
-      <div class="tc-val" style="background:var(--grad-brand);-webkit-background-clip:text;-webkit-text-fill-color:transparent">54</div>
-      <div class="tc-lbl">Completions (actual)</div>
-      <div class="tc-sub">Target: 59 &nbsp;·&nbsp; <strong style="color:var(--magenta)">91.5% achieved</strong></div>
+      <div class="tc-val" style="background:var(--grad-brand);-webkit-background-clip:text;-webkit-text-fill-color:transparent">211</div>
+      <div class="tc-lbl">Total TtT Completions</div>
+      <div class="tc-sub">Target: 100 &nbsp;·&nbsp; <strong style="color:#007A5E">+111% above ✓</strong></div>
     </div>
     <div class="ttt-card">
       <div class="tc-val" style="background:var(--grad-hot);-webkit-background-clip:text;-webkit-text-fill-color:transparent">88%</div>
@@ -399,33 +519,21 @@
       <div class="tc-sub">Target 75% &nbsp;·&nbsp; <strong style="color:#007A5E">+17% above ✓</strong></div>
     </div>
   </div>
-  <div class="card">
-    <div class="card-title"><div class="cdot" style="background:var(--blue)"></div>TtT vs. H-PASS Training — Comparative Outcomes</div>
-    <div id="ttt-compare-bars"></div>
-  </div>
-  <div class="two-col" style="margin-top:0">
-    <div class="grad-card" style="background:var(--grad-full)">
-      <div class="gc-label">TtT Completion Rate</div>
-      <div class="gc-val">91.5%</div>
-      <div class="gc-sub">54 of 59 target completions</div>
-    </div>
-    <div class="card" style="margin-bottom:0">
-      <div class="card-title"><div class="cdot" style="background:var(--cyan)"></div>Key Achievements</div>
-      <ul style="list-style:none;display:flex;flex-direction:column;gap:9px">
-        <li style="font-size:13px;padding:8px 0;border-bottom:1px solid var(--border);display:flex;gap:8px"><span>🎓</span>All 5 health professions represented in training</li>
-        <li style="font-size:13px;padding:8px 0;border-bottom:1px solid var(--border);display:flex;gap:8px"><span>📊</span>100% CME credit issuance rate achieved</li>
-        <li style="font-size:13px;padding:8px 0;border-bottom:1px solid var(--border);display:flex;gap:8px"><span>🌍</span>5 of 6 countries exceeded national targets</li>
-        <li style="font-size:13px;padding:8px 0;display:flex;gap:8px"><span>⭐</span>92.9% participant satisfaction across all sites</li>
-      </ul>
-    </div>
-  </div>
-  <div class="card" style="background:#FFF3F9;border-color:#F9C0DC;margin-top:0">
-    <div style="display:flex;gap:12px;align-items:flex-start">
-      <span style="font-size:22px">⚠️</span>
-      <div>
-        <div style="font-size:13px;font-weight:800;color:var(--magenta);margin-bottom:4px">Area for Improvement — Cyprus</div>
-        <div style="font-size:13px;color:var(--dark)">Cyprus is the only country where the target number of trained professionals was not yet met (26 actual vs. 75 target). Focused outreach and scheduling efforts are recommended for the remaining project period.</div>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title"><div class="cdot" style="background:var(--blue)"></div>TtT Programme Breakdown</div>
+      <div id="ttt-breakdown-bars"></div>
+      <div class="footnote-box">
+        <div class="footnote-item">
+          <span class="fn-badge">i</span>
+          <span><strong>H-PASS Trainers (54):</strong> Completed the Train-the-Trainer training for H-PASS trainers. &nbsp;<strong>Digital Change Agents (157):</strong> H-PASS alumni who completed the Digital Change Agent training.</span>
+        </div>
       </div>
+    </div>
+    <div class="grad-card" style="background:var(--grad-full)">
+      <div class="gc-label">DCA: Skills utilised in practice <span style="opacity:0.7;font-size:10px">(target: 50%)</span></div>
+      <div class="gc-val">92.06%</div>
+      <div class="gc-sub">Leadership in digital settings · post-training survey</div>
     </div>
   </div>
 </div>
@@ -433,59 +541,67 @@
 
 <script>
 const countries = [
-  { flag:'🇨🇾', name:'Cyprus',    target:75, actual:26,  over:false },
-  { flag:'🇬🇷', name:'Greece',    target:75, actual:75,  over:true  },
-  { flag:'🇭🇺', name:'Hungary',   target:75, actual:127, over:true  },
-  { flag:'🇮🇹', name:'Italy',     target:75, actual:142, over:true  },
-  { flag:'🇱🇹', name:'Lithuania', target:75, actual:83,  over:true  },
-  { flag:'🇷🇴', name:'Romania',   target:75, actual:84,  over:true  },
+  { flag:'🇨🇾', name:'Cyprus',    target:75, actual:48,  over:false, note:'*'  },
+  { flag:'🇬🇷', name:'Greece',    target:75, actual:119, over:true,  note:''   },
+  { flag:'🇭🇺', name:'Hungary',   target:75, actual:127, over:true,  note:''   },
+  { flag:'🇮🇹', name:'Italy',     target:75, actual:142, over:true,  note:''   },
+  { flag:'🇱🇹', name:'Lithuania', target:75, actual:83,  over:true,  note:''   },
+  { flag:'🇷🇴', name:'Romania',   target:75, actual:84,  over:true,  note:''   },
 ];
 const professions = [
-  { name:'Nurses',               target:135, actual:210, color:'#0064DC' },
-  { name:'Medical Doctors',      target:135, actual:97,  color:'#FB0087' },
-  { name:'Pharmacists',          target:80,  actual:88,  color:'#00B8A9' },
-  { name:'Allied Health Profs.', target:null,actual:136, color:'#AA0084' },
-  { name:'Other',                target:null,actual:6,   color:'#9D9D9C' },
+  { name:'Nurses',               target:135, actual:240, color:'#0064DC', note:''  },
+  { name:'Medical Doctors',      target:135, actual:111, color:'#FB0087', note:'*' },
+  { name:'Pharmacists',          target:80,  actual:88,  color:'#00B8A9', note:''  },
+  { name:'Allied Health Profs.', target:null,actual:158, color:'#AA0084', note:''  },
+  { name:'Other',                target:null,actual:6,   color:'#9D9D9C', note:''  },
+];
+const ageGroups = [
+  {label:'18–24',  actual:41 },
+  {label:'25–34',  actual:131},
+  {label:'35–44',  actual:133},
+  {label:'45–54',  actual:193},
+  {label:'55–64',  actual:82 },
+  {label:'65+',    actual:14 },
+  {label:'No data',actual:9  },
 ];
 const outputInds = [
-  { label:'HP Trained (Digital)', target:450, actual:537, max:620 },
-  { label:'CME Credits',          target:400, actual:497, max:620 },
-  { label:'TtT Completions',      target:59,  actual:54,  max:80  },
+  { label:'HP Trained (incl. TtT)', target:450, actual:814, max:900 },
+  { label:'HP Trained (H-PASS)',    target:350, actual:603, max:900 },
+  { label:'CME Credits',            target:400, actual:541, max:900 },
+  { label:'TtT Completions',        target:100, actual:211, max:900 },
 ];
 const outcomeInds = [
-  { label:'Digital skills improved',     target:75, actual:99.1 },
-  { label:'Transversal skills improved', target:75, actual:99.6 },
-  { label:'Teamwork in digital setting', target:75, actual:99.3 },
-  { label:'Clinical digital tool use',   target:75, actual:82.9 },
-  { label:'Admin digital tool use',      target:75, actual:79.2 },
+  { label:'Digital skills improved',     target:75, actual:99.1  },
+  { label:'Transversal skills improved', target:75, actual:99.6  },
+  { label:'Teamwork in digital setting', target:75, actual:99.3  },
+  { label:'Clinical digital tool use',   target:75, actual:82.9  },
+  { label:'Admin digital tool use',      target:75, actual:79.2  },
+  { label:'Skills utilised in practice*',target:50, actual:80.68 },
 ];
 const trainingOutcomes = [
-  { label:'Digital skills improved (pre/post)',    t:'75%', r:'99.1%', ok:true  },
-  { label:'Transversal skills improved (pre/post)',t:'75%', r:'99.6%', ok:true  },
-  { label:'Teamwork in digital setting',           t:'75%', r:'99.3%', ok:true  },
-  { label:'Increased clinical digital tool use',   t:'75%', r:'82.9%', ok:true  },
-  { label:'Increased admin digital tool use',      t:'75%', r:'79.2%', ok:true  },
-  { label:'Skills utilised in practice',           t:'50%', r:'TBC',   ok:false },
+  { label:'Digital skills improved (pre/post)',    t:'75%', r:'99.1%'  },
+  { label:'Transversal skills improved (pre/post)',t:'75%', r:'99.6%'  },
+  { label:'Teamwork in digital setting',           t:'75%', r:'99.3%'  },
+  { label:'Increased clinical digital tool use',   t:'75%', r:'82.9%'  },
+  { label:'Increased admin digital tool use',      t:'75%', r:'79.2%'  },
+  { label:'Skills utilised in practice *',         t:'50%', r:'80.68%' },
 ];
 const tttOutcomes = [
-  { label:'Change management skills improved', t:'75%', r:'88%',  ok:true  },
-  { label:'Educational methods knowledge',     t:'75%', r:'88%',  ok:true  },
-  { label:'Leadership in digital settings',    t:'50%', r:'TBC',  ok:false },
+  { label:'Change management skills improved', t:'75%', r:'88%'    },
+  { label:'Educational methods knowledge',     t:'75%', r:'88%'    },
+  { label:'Leadership in digital settings *',  t:'50%', r:'92.06%' },
 ];
 
-function numBar(label, actual, target, maxVal, color, prefix='') {
-  const pa=Math.min((actual/maxVal)*100,100), pt=Math.min((target/maxVal)*100,100);
-  const c=color||(actual>=target?'#0064DC':'#FB0087');
+function numBar(label, actual, target, maxVal, color) {
+  const pa=Math.min((actual/maxVal)*100,100);
+  const pt=target ? Math.min((target/maxVal)*100,100) : null;
+  const c=color||'#0064DC';
+  const tLine=pt!==null?`<div class="bar-target-line" style="left:${pt}%"></div>`:'';
+  const tVal=target?`<div class="bar-tval">/ ${target}</div>`:'';
   return `<div class="bar-row">
-    <div class="bar-label">${prefix}${label}</div>
-    <div class="bar-track">
-      <div class="bar-fill" style="width:${pa}%;background:${c}"></div>
-      <div class="bar-target-line" style="left:${pt}%"></div>
-    </div>
-    <div class="bar-vals">
-      <div class="bar-actual" style="color:${c}">${actual}</div>
-      <div class="bar-tval">/ ${target}</div>
-    </div>
+    <div class="bar-label">${label}</div>
+    <div class="bar-track"><div class="bar-fill" style="width:${pa}%;background:${c}"></div>${tLine}</div>
+    <div class="bar-vals"><div class="bar-actual" style="color:${c}">${actual}</div>${tVal}</div>
   </div>`;
 }
 function pctBar(label, actual, target, wide=false) {
@@ -503,30 +619,21 @@ function pctBar(label, actual, target, wide=false) {
   </div>`;
 }
 
-// render
-document.getElementById('output-bars').innerHTML  = outputInds.map(i=>numBar(i.label,i.actual,i.target,i.max,'#0064DC')).join('');
-document.getElementById('outcome-bars').innerHTML  = outcomeInds.map(i=>pctBar(i.label,i.actual,i.target)).join('');
-document.getElementById('country-bars').innerHTML  = countries.map(c=>numBar(c.name,c.actual,c.target,160,c.over?'#00B8A9':'#FB0087',c.flag+' ')).join('');
-document.getElementById('profession-bars').innerHTML = professions.map(p=>numBar(p.name,p.actual,p.target||p.actual,230,p.color)).join('');
-document.getElementById('usage-bars').innerHTML = [
-  {label:'Increased clinical digital tool use',actual:82.9,target:75},
-  {label:'Increased admin digital tool use',actual:79.2,target:75},
-].map(i=>pctBar(i.label,i.actual,i.target,true)).join('');
-document.getElementById('ttt-compare-bars').innerHTML = [
-  {label:'TtT: Change Management Skills',actual:88,target:75,color:'#AA0084'},
-  {label:'TtT: Educational Methods',actual:88,target:75,color:'#FB0087'},
-  {label:'H-PASS: Digital Skills',actual:99.1,target:75,color:'#0064DC'},
-  {label:'H-PASS: Transversal Skills',actual:99.6,target:75,color:'#00B8A9'},
-].map(i=>`<div class="bar-row">
-  <div class="bar-label wide" style="font-size:12px">${i.label}</div>
-  <div class="bar-track"><div class="bar-fill" style="width:${Math.min(i.actual,100)}%;background:${i.color}"></div><div class="bar-target-line" style="left:${i.target}%"></div></div>
-  <div class="bar-vals"><div class="bar-actual" style="color:${i.color}">${i.actual}%</div><div class="bar-tval">${i.target}%</div></div>
-</div>`).join('');
+// output / outcome
+document.getElementById('output-bars').innerHTML = outputInds.map(i=>numBar(i.label,i.actual,i.target,i.max,'#0064DC')).join('');
+document.getElementById('outcome-bars').innerHTML = outcomeInds.map(i=>pctBar(i.label,i.actual,i.target)).join('');
+
+// country bars
+document.getElementById('country-bars').innerHTML = countries.map(c=>{
+  const lbl=`${c.flag} ${c.name}${c.note?` <span class="ast-marker">${c.note}</span>`:''}`;
+  return numBar(lbl,c.actual,c.target,160,c.over?'#00B8A9':'#FB0087');
+}).join('');
 
 // country cards
 document.getElementById('country-cards').innerHTML = countries.map(c=>{
   const pct=Math.round((c.actual/c.target)*100);
   const col=c.over?'linear-gradient(135deg,#0064DC,#00FFD2)':'linear-gradient(135deg,#AA0084,#FB0087)';
+  const noteHtml=c.note?`<div class="kpi-note"><span class="fn-badge">${c.note}</span><span>Target not fully met due to demographic characteristics of the piloting country.</span></div>`:'';
   return `<div class="kpi-card">
     <div class="top-bar" style="background:${col}"></div>
     <div class="kpi-icon">${c.flag}</div>
@@ -534,27 +641,105 @@ document.getElementById('country-cards').innerHTML = countries.map(c=>{
     <div class="kpi-value" style="background:${col};-webkit-background-clip:text;-webkit-text-fill-color:transparent">${c.actual}</div>
     <div class="kpi-target">Target: <strong>${c.target}</strong></div>
     <span class="kpi-pill ${c.over?'pill-over':'pill-under'}">${pct}% ${c.over?'✓ Met':'⚠ Below'}</span>
+    ${noteHtml}
   </div>`;
 }).join('');
 
+// profession bars
+document.getElementById('profession-bars').innerHTML = professions.map(p=>{
+  const lbl=p.name+(p.note?` <span class="ast-marker">${p.note}</span>`:'');
+  return numBar(lbl,p.actual,p.target||p.actual,270,p.color);
+}).join('');
+
+// age bars
+const maxAge=Math.max(...ageGroups.map(a=>a.actual));
+document.getElementById('age-bars').innerHTML=ageGroups.map(a=>`<div class="bar-row">
+  <div class="bar-label" style="width:80px">${a.label}</div>
+  <div class="bar-track"><div class="bar-fill" style="width:${(a.actual/maxAge)*100}%;background:var(--blue)"></div></div>
+  <div class="bar-vals"><div class="bar-actual" style="color:var(--blue)">${a.actual}</div></div>
+</div>`).join('');
+
+// gender bars
+document.getElementById('gender-bars').innerHTML=[
+  {label:'Female',actual:498,color:'#FB0087'},
+  {label:'Male',  actual:105,color:'#0064DC'},
+].map(g=>`<div class="bar-row">
+  <div class="bar-label" style="width:80px">${g.label}</div>
+  <div class="bar-track"><div class="bar-fill" style="width:${(g.actual/603)*100}%;background:${g.color}"></div></div>
+  <div class="bar-vals"><div class="bar-actual" style="color:${g.color}">${g.actual}</div><div class="bar-tval">${Math.round((g.actual/603)*100)}%</div></div>
+</div>`).join('');
+
 // outcome tables
-document.getElementById('training-tbody').innerHTML = trainingOutcomes.map(r=>`<tr><td>${r.label}</td><td>${r.t}</td><td>${r.r}</td><td>${r.r==='TBC'?'<span class="tag-score tag-amber">⏳ TBC</span>':'<span class="tag-score tag-green">✓ '+r.r+'</span>'}</td></tr>`).join('');
-document.getElementById('ttt-tbody').innerHTML = tttOutcomes.map(r=>`<tr><td>${r.label}</td><td>${r.t}</td><td>${r.r}</td><td>${r.r==='TBC'?'<span class="tag-score tag-amber">⏳ TBC</span>':'<span class="tag-score tag-green">✓ '+r.r+'</span>'}</td></tr>`).join('');
+document.getElementById('training-tbody').innerHTML=trainingOutcomes.map(r=>`<tr><td>${r.label}</td><td>${r.t}</td><td>${r.r}</td><td><span class="tag-score tag-green">✓ ${r.r}</span></td></tr>`).join('');
+document.getElementById('ttt-tbody').innerHTML=tttOutcomes.map(r=>`<tr><td>${r.label}</td><td>${r.t}</td><td>${r.r}</td><td><span class="tag-score tag-green">✓ ${r.r}</span></td></tr>`).join('');
 
 // donut
-const canvas=document.getElementById('donutCanvas'), ctx=canvas.getContext('2d');
-const vals=professions.map(p=>p.actual), cols=professions.map(p=>p.color);
+const canvas=document.getElementById('donutCanvas'),ctx=canvas.getContext('2d');
+const vals=professions.map(p=>p.actual),cols=professions.map(p=>p.color);
 const tot=vals.reduce((a,b)=>a+b,0);
-let s=-Math.PI/2; const cx=105,cy=105,R=88,ri=56;
-vals.forEach((v,i)=>{
-  const sl=(v/tot)*2*Math.PI;
-  ctx.beginPath(); ctx.moveTo(cx,cy); ctx.arc(cx,cy,R,s,s+sl); ctx.closePath();
-  ctx.fillStyle=cols[i]; ctx.fill(); s+=sl;
-});
-ctx.beginPath(); ctx.arc(cx,cy,ri,0,2*Math.PI); ctx.fillStyle='#fff'; ctx.fill();
-ctx.fillStyle='#3C3C3B'; ctx.font='bold 18px Baloo 2,sans-serif'; ctx.textAlign='center'; ctx.fillText(tot,cx,cy+6);
-ctx.font='11px Baloo 2,sans-serif'; ctx.fillStyle='#9D9D9C'; ctx.fillText('Total',cx,cy+20);
+let s=-Math.PI/2;const cx=105,cy=105,R=88,ri=56;
+vals.forEach((v,i)=>{const sl=(v/tot)*2*Math.PI;ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,R,s,s+sl);ctx.closePath();ctx.fillStyle=cols[i];ctx.fill();s+=sl;});
+ctx.beginPath();ctx.arc(cx,cy,ri,0,2*Math.PI);ctx.fillStyle='#fff';ctx.fill();
+ctx.fillStyle='#3C3C3B';ctx.font='bold 18px Baloo 2,sans-serif';ctx.textAlign='center';ctx.fillText(tot,cx,cy+6);
+ctx.font='11px Baloo 2,sans-serif';ctx.fillStyle='#9D9D9C';ctx.fillText('Total',cx,cy+20);
 document.getElementById('donut-legend').innerHTML=professions.map(p=>`<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:13px"><div style="width:12px;height:12px;border-radius:3px;background:${p.color};flex-shrink:0"></div><span style="flex:1">${p.name}</span><strong>${p.actual}</strong><span style="color:#9D9D9C;font-size:11px">${Math.round((p.actual/tot)*100)}%</span></div>`).join('');
+
+// usage / impact bars
+document.getElementById('usage-bars').innerHTML=[
+  {label:'Increased clinical digital tool use',actual:82.9,target:75},
+  {label:'Increased admin digital tool use',   actual:79.2,target:75},
+].map(i=>pctBar(i.label,i.actual,i.target,true)).join('');
+
+document.getElementById('impact-bars').innerHTML=[
+  {label:'Improved teamwork & workflows (H-PASS) *', actual:80.7,target:50,color:'#0064DC'},
+  {label:'DCA completers with workplace actions **',  actual:58.7,target:50,color:'#AA0084'},
+].map(i=>`<div class="bar-row">
+  <div class="bar-label wide" style="font-size:12px">${i.label}</div>
+  <div class="bar-track">
+    <div class="bar-fill" style="width:${Math.min(i.actual,100)}%;background:${i.color}"></div>
+    <div class="bar-target-line" style="left:${i.target}%"></div>
+  </div>
+  <div class="bar-vals"><div class="bar-actual" style="color:${i.color}">${i.actual}%</div><div class="bar-tval">${i.target}%</div></div>
+</div>`).join('');
+
+// TtT breakdown
+document.getElementById('ttt-breakdown-bars').innerHTML=[
+  {label:'H-PASS Trainers (TtT)',actual:54, max:220,color:'#0064DC'},
+  {label:'Digital Change Agents',actual:157,max:220,color:'#AA0084'},
+  {label:'Total TtT',            actual:211,max:220,color:'#00B8A9'},
+].map(i=>`<div class="bar-row">
+  <div class="bar-label">${i.label}</div>
+  <div class="bar-track"><div class="bar-fill" style="width:${(i.actual/i.max)*100}%;background:${i.color}"></div></div>
+  <div class="bar-vals"><div class="bar-actual" style="color:${i.color}">${i.actual}</div></div>
+</div>`).join('');
+
+// thematic components
+const thematicLeft = [
+  {label:'Digital technologies in healthcare', actual:603, color:'#0064DC'},
+  {label:'Leading digital change',             actual:603, color:'#0064DC'},
+  {label:'Communication',                      actual:603, color:'#0064DC'},
+  {label:'Teams',                              actual:603, color:'#0064DC'},
+  {label:'Conflict',                           actual:603, color:'#0064DC'},
+  {label:'Culture',                            actual:603, color:'#0064DC'},
+];
+const thematicRight = [
+  {label:'Health care-system awareness',       actual:418, color:'#AA0084'},
+  {label:'Developing healthcare solutions',    actual:418, color:'#AA0084'},
+  {label:'Managing healthcare developments',   actual:418, color:'#AA0084'},
+  {label:'Data in the Healthcare system',     actual:455, color:'#00B8A9'},
+  {label:'Safety',                            actual:455, color:'#00B8A9'},
+  {label:'Working with Data',                 actual:455, color:'#00B8A9'},
+];
+const thMaxVal = 650;
+function thBar(item) {
+  return `<div class="bar-row">
+    <div class="bar-label" style="width:200px;font-size:11.5px">${item.label}</div>
+    <div class="bar-track"><div class="bar-fill" style="width:${(item.actual/thMaxVal)*100}%;background:${item.color}"></div></div>
+    <div class="bar-vals"><div class="bar-actual" style="color:${item.color}">${item.actual}</div></div>
+  </div>`;
+}
+document.getElementById('thematic-bars-left').innerHTML  = thematicLeft.map(thBar).join('');
+document.getElementById('thematic-bars-right').innerHTML = thematicRight.map(thBar).join('');
 
 // tabs
 document.querySelectorAll('.tab').forEach(t=>{
@@ -564,20 +749,12 @@ document.querySelectorAll('.tab').forEach(t=>{
     t.classList.add('active');
     const panel=document.getElementById('panel-'+t.dataset.tab);
     panel.classList.add('active');
-    panel.querySelectorAll('.bar-fill').forEach(el=>{ const w=el.style.width; el.style.width='0%'; setTimeout(()=>el.style.width=w,50); });
+    panel.querySelectorAll('.bar-fill').forEach(el=>{const w=el.style.width;el.style.width='0%';setTimeout(()=>el.style.width=w,50);});
   });
 });
-// initial animation
 window.addEventListener('load',()=>{
-  document.querySelectorAll('.panel.active .bar-fill').forEach(el=>{ const w=el.style.width; el.style.width='0%'; setTimeout(()=>el.style.width=w,150); });
+  document.querySelectorAll('.panel.active .bar-fill').forEach(el=>{const w=el.style.width;el.style.width='0%';setTimeout(()=>el.style.width=w,150);});
 });
 </script>
-<footer class="footer">
-  <img src="EN_Funded_logo.png" alt="Funded by the European Union">
-  <p class="footer-text">
-    Funded by the European Union. Views and opinions expressed are however those of the author(s) 
-    only and do not necessarily reflect those of the European Union or the Health and Digital 
-    Executive Agency (HaDEA). Neither the European Union nor the granting authority can be held 
-    responsible for them.
-  </p>
-</footer>
+</body>
+</html>
